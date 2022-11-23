@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator_BL
 {
-    public class CalculatorContext: IDisposable
+    public class CalculatorContext
     {
         private string _text = string.Empty;
         private string _result = string.Empty;
@@ -59,17 +59,6 @@ namespace Calculator_BL
         {
             _result = result;
             _resultChanged?.Invoke(_result);
-        }
-        
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
-
-        ~CalculatorContext()
-        {
-            _textChanged = null;
-            _resultChanged = null;
         }
     }
 }
