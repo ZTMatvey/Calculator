@@ -44,15 +44,20 @@ namespace Calculator_BL
                     operations.Push(token);
                 }
                 else if (token == ")")
+                {
+                    var correct = false;
                     while (operations.TryPeek(out string symbol))
                     {
                         if (symbol == "(")
                         {
                             operations.Pop();
+                            correct = true;
                             break;
                         }
                         solveCurrent(symbol);
                     }
+                    if (!correct) throwException();
+                }
                 else operations.Push(token);
             }
             while (operations.TryPeek(out string symbol)) solveCurrent(symbol);
